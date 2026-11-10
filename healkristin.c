@@ -226,6 +226,17 @@ int main(int argc, char *argv[]){
     int *dMinCluster = (int*)calloc((nr_cidade+1),sizeof(int)); //vetor de verificacao para a task4 se já foi calculada a dmin para aquele cluster
     if(dMinCluster==NULL){exit(1);}
 
+    /*--------------------------alterações feitas por bia para a task5 -----------------------------------------------------------*/
+
+    int max_lig = (nr_cidade*(nr_cidade-1))/2; //calculo combinatório para calcular o máximo de ligações possiveis
+    Aresta* vetor_arestas = (Aresta*)malloc(max_lig * sizeof(Aresta));
+    int total_arestas = preencher_grafo(tabela_coordenadas, nr_cidade, clusters_head, vetor_arestas);
+    int quant_cabo =0;
+    double cabo_total =0.0;
+    Aresta* usadas = task5(tabela_coordenadas, nr_cidade, tabela_ligacoes, vetor_arestas, total_arestas, &quant_cabo, &cabo_total);
+
+    /*-----------------------------------------------------------------------------------------------------------------------------*/
+
 
     while (fscanf(fp1, "%5s", task) == 1){ // le a task a executar e escolhe a task
         if(strcmp(task, "Task1") == 0){ //para a task 1 imprime apenas o numero de clusters
@@ -264,7 +275,15 @@ int main(int argc, char *argv[]){
                 cidmin = task4(tabela_coordenadas, nr_cidade, tabela_ligacoes, cidref, clusters_head, nr_clusters, dMinCluster);
                 fprintf(f_saida, "Task4 %d %d\n\n", cidref, cidmin);
             }
+        }else if(strcmp(task, "Task5") == 0){
+
+            fprintf(f_saida, "Task5 %.2f\n", cabo_total);
+            for (int i=0; i<quant_cabo; i++){
+                fprintf(f_saida, "%d %d %.2f\n", usadas[i].cid1, usadas[i].cid2, usadas[i].dist);  
+            }
+
         }
+
 
     }
 
@@ -288,6 +307,12 @@ int main(int argc, char *argv[]){
     free(tabela_ligacoes);
     free(tabela_coordenadas);
     free(nome);
-    
+
+    /*----------------------------------------alteraçoes------------------------------*/
+    free(vetor_arestas); 
+    vetor_arestas=NULL;
+    free(usadas);
+    usadas = NULL;
+    /*---------------------------------------------------------------------------*/
     return 0;
 }

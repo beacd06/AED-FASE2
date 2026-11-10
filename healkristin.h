@@ -14,6 +14,14 @@ typedef struct ligacoes{
     int sz; 
 }ligacoes;
 
+typedef struct Aresta{ //estrutura para a task5
+    int cid1;
+    int cid2;
+    int dist;
+}Aresta;
+
+
+
 //Estrutura que reresenta o nó da lista ligada utilizada na task2
 typedef struct no{ 
     int nr_cid;
