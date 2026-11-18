@@ -202,6 +202,9 @@ int preencher_grafo(coordenadas *pos, int nr_cidades, no **clusters_head, Aresta
                 
                     //calcular distancia euclidiana
                     double d = pow((xi - xj), 2) + pow((yi - yj), 2);
+
+                    int menor_cid = (cid_i < cid_j) ? cid_i : cid_j;
+                    int maior_cid = (cid_i < cid_j) ? cid_j : cid_i;
                 
                     if (d < d_min_par) { //guarda apenas a menor distância entre os clusters
                         d_min_par = d;
@@ -212,6 +215,11 @@ int preencher_grafo(coordenadas *pos, int nr_cidades, no **clusters_head, Aresta
                         } else {
                             melhor_cid_i = cid_j; 
                             melhor_cid_j = cid_i;
+                        }
+                    }else if(d == d_min_par){ //se tiverem a mesma distancia
+                        if(menor_cid < melhor_cid_i || (menor_cid == melhor_cid_i && maior_cid < melhor_cid_j)){
+                            melhor_cid_i = menor_cid;
+                            melhor_cid_j = maior_cid;
                         }
                     } 
 

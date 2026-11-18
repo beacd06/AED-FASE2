@@ -2,6 +2,7 @@
 CC = gcc
 
 CFLAGS = -Wall -std=c99 -O3 #normal
+#CFLAGS = -Wall -std=c99 -g -O0 #debug
 # CFLAGS = -Wall -std=c99 -g #valgrind
 # CFLAGS = -Wall -std=c99 -g -pg #com tempo
 

@@ -17,7 +17,7 @@ typedef struct ligacoes{
 typedef struct Aresta{ //estrutura para a task5
     int cid1;
     int cid2;
-    int dist;
+    double dist;
 }Aresta;
 
 

@@ -12,6 +12,6 @@ int comparar2(const void *a, const void *b);
 int comparar1(const void *a, const void *b);
 int UFfind(ligacoes *tabela, int i);
 void UFunion(ligacoes *tabela, int raiz1, int raiz2);
-Aresta* task5(coordenadas *pos, int nr_cidades, ligacoes *mapa, Aresta* vetor_aresta, int nr_arestas, int *quant_cabo, int *total_cabo);
+Aresta* task5(coordenadas *pos, int nr_cidades, ligacoes *mapa, Aresta* vetor_aresta, int nr_arestas, int *quant_cabo, double *total_cabo);
 
 #endif
